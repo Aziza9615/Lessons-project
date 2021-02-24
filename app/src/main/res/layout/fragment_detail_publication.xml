@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorAccent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon_civ"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_8_dp"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        android:layout_marginLeft="@dimen/margin_8_dp" />
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@+id/icon_civ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/icon_civ"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_civ"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        android:layout_marginEnd="@dimen/margin_8_dp"
+        tools:text="It academy"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/images_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_civ"
+        android:layout_marginTop="@dimen/margin_16_dp"
+        android:minHeight="200dp"
+        android:maxHeight="250dp"/>
+
+    <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+        android:id="@+id/rv_pi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/images_rv"
+        app:layout_constraintEnd_toEndOf="@+id/images_rv"
+        app:layout_constraintTop_toBottomOf="@+id/images_rv"
+        android:layout_marginTop="@dimen/margin_8_dp"/>
+
+    <TextView
+        android:id="@+id/count_of_favorite_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/favorites_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/favorites_btn"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        tools:text="100"
+        android:layout_marginLeft="@dimen/margin_8_dp"
+        android:textSize="@dimen/margin_16_dp"/>
+
+    <ImageView
+        android:id="@+id/favorite_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_unfavorite"
+        app:layout_constraintTop_toBottomOf="@+id/rv_pi"
+        app:layout_constraintStart_toStartOf="@id/count_of_favorite_tv"
+        android:layout_marginTop="@dimen/margin_8_dp"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        android:layout_marginLeft="@dimen/margin_8_dp" />
+
+    <ImageButton
+        android:id="@+id/comment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/favorite_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite_btn"
+        android:background="@drawable/ic_comment"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        android:layout_marginLeft="@dimen/margin_8_dp" />
+
+    <ImageButton
+        android:id="@+id/direct_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/comment_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite_btn"
+        android:background="@drawable/ic_direct"
+        android:layout_marginStart="@dimen/margin_8_dp"
+        android:layout_marginLeft="@dimen/margin_8_dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,72 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/goldman_regular</item>
+
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <!-- <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+    
+    <style name="HeaderText">
+        <item name="android:textSize">@dimen/text_size_20_sp</item>
+        <item name="android:textColor">@color/colorHeader_text</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/goldman_bold</item>
+    </style>
+
+    <style name="SubHeaderText">
+        <item name="android:textSize">@dimen/text_size_12_sp</item>
+        <item name="android:textColor">@color/colorSub_Header_text</item>
+        <item name="fontFamily">@font/goldman_regular</item>
+        <item name="android:lines">2</item>
+</style>
+
+    <style name="AlertHeaderText">
+        <item name="android:textSize">@dimen/text_size_16_sp</item>
+        <item name="android:textColor">@color/colorHeader_text</item>
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/goldman_bold</item>
+    </style>
+
+
+    <style name="PositiveButton">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="NegativeButton">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/colorHeader_text</item>
+    </style>
+    
+    <style name="button">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/black_bgr</item>
+        <item name="android:textColor">@color/white_bgr</item>
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/goldman_regular</item>
+    </style>
+
+    <style name="NewsDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bgr_alert_dialog</item>
+    </style>
+
+
+</resources>
