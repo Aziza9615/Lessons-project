@@ -15,7 +15,7 @@ import com.example.firstapp.ui.detail_publication.DetailPublicationFragment
 import com.example.firstapp.ui.main.MainRepository
 import com.example.firstapp.ui.publication.RequestResult
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.item_main.*
+import kotlinx.android.synthetic.main.item_publication.*
 
 class ProfileFragment : Fragment(), ProfileAdapter.ClickListener, RequestResult {
 

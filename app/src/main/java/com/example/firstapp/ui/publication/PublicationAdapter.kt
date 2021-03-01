@@ -15,23 +15,39 @@ import com.example.firstapp.model.Publication
 import com.example.firstapp.ui.comment.CommentsPublicationAdapter
 import com.example.firstapp.ui.image.ImagePublicationAdapter
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
-import kotlinx.android.synthetic.main.item_main.view.*
+import kotlinx.android.synthetic.main.item_publication.view.*
 
-class PublicationAdapter(private val listener: ClickListener, private val activity: Activity) : RecyclerView.Adapter<PublicationViewHolder>() {
+class PublicationAdapter(private val listener: ClickListener, private val activity: Activity) :
+    RecyclerView.Adapter<BaseViewHolder>() {
     
     private var items = mutableListOf<Publication>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicationViewHolder {
-        return PublicationViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        return if (viewType == VIEW_TYPE_DATA) PublicationViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_publication, parent, false)
+        ) else EmptyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_empty, parent, false)
         )
     }
-    
+
     override fun getItemCount(): Int {
-        return items.count()
+        return if (items.count() == 0) 1
+        else items.count()
     }
-    
-    override fun onBindViewHolder(holder: PublicationViewHolder, position: Int) {
-        val item = items.get(position)
+
+    override fun getItemViewType(position: Int): Int {
+        return if (items.count() == 0) VIEW_TYPE_EMPTY
+        else VIEW_TYPE_DATA
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        val type = getItemViewType(position)
+        if (type == VIEW_TYPE_DATA) setupPublicationViewHolder(holder as PublicationViewHolder, position)
+    }
+
+
+    private fun setupPublicationViewHolder(holder: PublicationViewHolder, position: Int) {
+        val item = items[position]
         holder.bind(item, activity)
         holder.itemView.favorite_btn.setOnClickListener {
             listener.onFavoriteClick(item, position)
@@ -44,32 +60,36 @@ class PublicationAdapter(private val listener: ClickListener, private val activi
             listener.onDirectClick(item)
         }
     }
-    
+
     fun addItems(items: MutableList<Publication>) {
         this.items = items
         notifyDataSetChanged()
     }
-    
     fun updateItem(position: Int) {
         notifyItemChanged(position)
     }
-    
     fun removeItem(position: Int) {
         items.removeAt(position)
         notifyItemRangeRemoved(position, itemCount)
     }
-    
     interface ClickListener {
         fun onFavoriteClick(item: Publication, position: Int)
         fun onCommentClick(item: Publication)
         fun onDirectClick(item: Publication)
     }
+
+    companion object {
+        val VIEW_TYPE_DATA = 1
+        val VIEW_TYPE_EMPTY = 2
+    }
 }
 
-class PublicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+class PublicationViewHolder(itemView: View) : BaseViewHolder(itemView) {
     fun bind(item: Publication, activity: Activity) {
-        Glide.with(itemView.context).load(item.icon).placeholder(R.drawable.ic_people).into(itemView.icon_civ)
+        Glide.with(itemView.context).load(item.icon).placeholder(R.drawable.ic_people)
+            .into(itemView.icon_civ)
         itemView.name_tv.text = item.name
         itemView.count_of_favorite_tv.text = "${item.countOfFavorite}"
         if (item.countOfFavorite == 0) itemView.count_of_favorite_tv.visibility = View.GONE
@@ -79,12 +99,10 @@ class PublicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         setupCommentsRecyclerView(item.comments, itemView.comments_rv)
     }
 
-    //protected - метод с параметром доступа виден для других классов только внутри родительской папки
-    //private - метод с параметром доступа виден для других классов только внутри класс
-    //public - метод с параметром доступа виден всем
-    //internal - метод с параметром доступа виден для других только для родительского модуля
-
-    private fun setupCommentsRecyclerView(items: MutableList<Comment>?, recyclerView: RecyclerView) {
+    private fun setupCommentsRecyclerView(
+        items: MutableList<Comment>?,
+        recyclerView: RecyclerView
+    ) {
         val adapter = CommentsPublicationAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(recyclerView.context)
@@ -93,6 +111,8 @@ class PublicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         items?.let { adapter.addItems(it) }
     }
 }
+
+class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) { }
 
 fun setupImagesRecyclerView(items: MutableList<Images>?, recyclerView: RecyclerView, pagerIndicator: IndefinitePagerIndicator) {
     val adapter = ImagePublicationAdapter()
@@ -106,15 +126,7 @@ fun setupImagesRecyclerView(items: MutableList<Images>?, recyclerView: RecyclerV
     }
     items?.let { adapter.addItems(it) }
 }
-
 private fun getFavoriteIcon(state: Boolean): Int {
     return if (state) R.drawable.ic_favorite
     else R.drawable.ic_unfavorite
 }
-
- //View.VISIBLE = ОТОБРАЖАЕТСЯ
-// View.GONE = неотображается и Text view не занимает места
-//View.INVISIBLE - НЕ ОТОБРАЖАЕТСЯ НО text view ЗАНИМАЕТ МЕСТА
-
-
-
