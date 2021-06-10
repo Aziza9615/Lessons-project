@@ -17,7 +17,9 @@ import com.example.firstapp.ui.publication.RequestResult
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.item_publication.*
 
-class ProfileFragment : Fragment(), ProfileAdapter.ClickListener, RequestResult {
+class
+
+ProfileFragment : Fragment(), ProfileAdapter.ClickListener, RequestResult {
 
     private lateinit var adapter: ProfileAdapter
     private val COUNT_OF_GRID = 3

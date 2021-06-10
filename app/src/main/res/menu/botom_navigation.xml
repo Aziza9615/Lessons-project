@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/gray_bgr">
+    android:background="@color/colorHeader_text">
 
     <item android:id="@+id/image"
         android:icon="@drawable/ic_public"
         android:title="Публикации" />
 
     <item android:id="@+id/favorite"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_heart"
         android:title="Избранное"/>
 
     <item android:id="@+id/profile"

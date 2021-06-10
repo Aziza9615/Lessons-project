@@ -42,7 +42,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginEnd="@dimen/margin_8_dp"
-        android:src="@drawable/ic_cat"
+        android:src="@drawable/ic_heart"
         app:layout_constraintBottom_toBottomOf="@+id/count_of_favorite_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/count_of_favorite_tv"

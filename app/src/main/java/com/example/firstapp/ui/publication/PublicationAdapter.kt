@@ -127,6 +127,6 @@ fun setupImagesRecyclerView(items: MutableList<Images>?, recyclerView: RecyclerV
     items?.let { adapter.addItems(it) }
 }
 private fun getFavoriteIcon(state: Boolean): Int {
-    return if (state) R.drawable.ic_favorite
+    return if (state) R.drawable.ic_heart
     else R.drawable.ic_unfavorite
 }
